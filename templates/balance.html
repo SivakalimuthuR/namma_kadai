@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cash Balance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head>
+<body>
+    <header>
+        <h1>Current Cash Balance</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('manage_items') }}">Manage Items</a>
+            <a href="{{ url_for('manage_purchase') }}">Manage Purchases</a>
+            <a href="{{ url_for('manage_sales') }}">Manage Sales</a>
+            <a href="{{ url_for('show_balance') }}">Balance</a>
+            <a href="{{ url_for('report') }}">View Report</a>
+        </nav>
+    </header>
+
+    <div class="balance">
+        <p>Cash Balance: Rs. {{ cash_balance }}</p>
+    </div>
+</body>
+</html>

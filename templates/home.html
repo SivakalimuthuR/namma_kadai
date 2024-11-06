@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ company.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head>
+<body>
+    <header>
+        <h1>{{ company.name }}</h1>
+        <div class="balance">
+            <p>Current Balance: ₹{{ company.cash_balance | round(2) }}</p>
+        </div>
+        <nav>
+            
+            <a href="{{ url_for('manage_items') }}">Manage Items</a>
+            <a href="{{ url_for('manage_purchase') }}">Manage Purchases</a>
+            <a href="{{ url_for('manage_sales') }}">Manage Sales</a>
+            <a href="{{ url_for('show_balance') }}">Balance</a>
+            <a href="{{ url_for('report') }}">Report</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='s.jpg') }}" alt="Company Image" />
+        </div>
+    </main>
+    
+</body>
+</html>

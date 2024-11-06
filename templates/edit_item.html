@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Item - {{ item.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head>
+<body>
+    <header>
+        <h1>Edit Item</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('manage_items') }}">Manage Items</a>
+            <a href="{{ url_for('manage_purchase') }}">Manage Purchases</a>
+            <a href="{{ url_for('manage_sales') }}">Manage Sales</a>
+            <a href="{{ url_for('show_balance') }}">Balance</a>
+            <a href="{{ url_for('report') }}">Report</a>
+        </nav>
+    </header>
+
+    <main>
+        <form method="POST">
+            <label for="name">Item Name:</label>
+            <input type="text" name="name" id="name" value="{{ item.name }}" required>
+
+            <label for="price">Item Price:</label>
+            <input type="number" name="price" id="price" value="{{ item.price }}" required step="0.01" min="0">
+
+            <div class="container">
+                <a class="button" href="{{ url_for('manage_items') }}">Update Item</a>
+            </div>
+        </form>
+        <div class="container">
+            <a class="button" href="{{ url_for('manage_items') }}">Back</a>
+        </div>
+    </main>
+</body>
+</html>
