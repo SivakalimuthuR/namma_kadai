@@ -4,23 +4,16 @@
     <meta charset="UTF-8">
     <title>{{ company.name }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
 </head>
 <body>
     <header>
-        <!-- Title and balance section -->
         <div class="header-left">
             <h1>{{ company.name }}</h1>
         </div>
-        
-        <!-- Balance Section -->
         <div class="balance">
             <p>Current Balance: <span>₹{{ company.cash_balance | round(2) }}</span></p>
         </div>
-        
-        <!-- Namma_Kadai on the right side -->
         <div class="namma-kadai">Namma_Kadai</div>
-
         <nav>
             <a href="{{ url_for('manage_items') }}">Items</a>
             <a href="{{ url_for('manage_purchase') }}">Purchases</a>
@@ -52,7 +45,6 @@
             </tbody>
         </table>
 
-        <!-- Pagination for Items -->
         <div class="pagination">
             {% if items_pagination.has_prev %}
                 <a href="{{ url_for('home', page=items_pagination.prev_num) }}">Previous</a>

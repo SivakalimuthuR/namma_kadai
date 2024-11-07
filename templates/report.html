@@ -44,7 +44,6 @@
             </tbody>
         </table>
 
-        <!-- Pagination for Purchases -->
         <div class="pagination">
             {% if purchases_pagination.has_prev %}
                 <a href="{{ url_for('report', purchases_page=purchases_pagination.prev_num, sales_page=request.args.get('sales_page', 1)) }}">Previous</a>
@@ -81,7 +80,6 @@
             </tbody>
         </table>
 
-        <!-- Pagination for Sales -->
         <div class="pagination">
             {% if sales_pagination.has_prev %}
                 <a href="{{ url_for('report', sales_page=sales_pagination.prev_num, purchases_page=request.args.get('purchases_page', 1)) }}">Previous</a>

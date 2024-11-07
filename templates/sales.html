@@ -4,48 +4,29 @@
     <meta charset="UTF-8">
     <title>Manage Sales</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        #qty { background-color: transparent; border: 1px solid #ccc; color: #333; padding: 5px; }
-    </style>
     <script>
-        // Function to update the quantity placeholder based on the selected item
+        
+        const items_data = {{ items | tojson }}; // List of items (id, name, qty)
+
+        
         function updateQuantityPlaceholder() {
-            var itemSelect = document.getElementById("item_id");
-            var qtyInput = document.getElementById("qty");
-
-            // Get the selected item's id
-            var selectedItemId = itemSelect.value;
-
-            // Find the selected item from the items_data array
-            var selectedItem = items_data.find(function(item) {
-                return item.id == selectedItemId;
-            });
-
-            // Update the placeholder of the quantity input with the available quantity
+            const selectedItemId = document.getElementById("item_id").value;
+            const selectedItem = items_data.find(item => item.id == selectedItemId);
+            const qtyInput = document.getElementById("qty");
+            
             if (selectedItem) {
                 qtyInput.placeholder = "Available: " + selectedItem.qty;
-                qtyInput.max = selectedItem.qty;  // Optionally limit max quantity based on available stock
+                qtyInput.max = selectedItem.qty; 
             }
         }
 
-        // Pass the items data from Flask to JavaScript
-        const items_data = {{ items | tojson }}; // This is now a list of dictionaries (items with id, name, qty)
-
-        // Initialize the placeholder for the first item on page load
         window.onload = function() {
-            updateQuantityPlaceholder();
-            hideFlashMessage();
+            updateQuantityPlaceholder(); 
+            setTimeout(() => {
+                const flashMessage = document.querySelector('.flash-message');
+                if (flashMessage) flashMessage.style.display = 'none'; 
+            }, 5000);
         };
-
-        // Function to hide the flash message after 5 seconds
-        function hideFlashMessage() {
-            setTimeout(function() {
-                var flashMessage = document.querySelector('.flash-message');
-                if (flashMessage) {
-                    flashMessage.style.display = 'none';
-                }
-            }, 5000);  // Hide after 5 seconds
-        }
     </script>
 </head>
 <body>
@@ -59,13 +40,11 @@
         </nav>
     </header>
 
-    <!-- Flash message block, moved to the top of the page -->
+    <!-- Flash message block -->
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <div class="flash-message {% for category, message in messages %}flash-{{ category }}{% endfor %}">
-                {% for category, message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
+            <div class="flash-message flash-{{ messages[0][0] }}">
+                <p>{{ messages[0][1] }}</p>
             </div>
         {% endif %}
     {% endwith %}
