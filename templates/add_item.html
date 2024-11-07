@@ -19,7 +19,7 @@
                 <label for="price">Price:</label>
                 <input type="number" step="0.01" name="price" id="price" placeholder="Price" required>
                 
-                <a class="button" href="{{ url_for('manage_items') }}">Add Item</a>
+                <button type="submit" class="button">Add Item</button>
             </form>
             <a href="{{ url_for('manage_purchase') }}" class="back-link">Back to Manage Purchases</a>
         </section>

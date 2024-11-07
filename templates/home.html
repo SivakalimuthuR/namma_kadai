@@ -3,29 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ company.name }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
     <header>
-        <h1>{{ company.name }}</h1>
-        <div class="balance">
-            <p>Current Balance: ₹{{ company.cash_balance | round(2) }}</p>
+        <!-- Title and balance section -->
+        <div class="header-left">
+            <h1>{{ company.name }}</h1>
         </div>
+        
+        <!-- Balance Section -->
+        <div class="balance">
+            <p>Current Balance: <span>₹{{ company.cash_balance | round(2) }}</span></p>
+        </div>
+        
+        <!-- Namma_Kadai on the right side -->
+        <div class="namma-kadai">Namma_Kadai</div>
+
         <nav>
-            
-            <a href="{{ url_for('manage_items') }}">Manage Items</a>
-            <a href="{{ url_for('manage_purchase') }}">Manage Purchases</a>
-            <a href="{{ url_for('manage_sales') }}">Manage Sales</a>
-            <a href="{{ url_for('show_balance') }}">Balance</a>
+            <a href="{{ url_for('manage_items') }}">Items</a>
+            <a href="{{ url_for('manage_purchase') }}">Purchases</a>
+            <a href="{{ url_for('manage_sales') }}">Sales</a>
             <a href="{{ url_for('report') }}">Report</a>
         </nav>
     </header>
 
-    <main>
-        <div class="image-container">
-            <img src="{{ url_for('static', filename='s.jpg') }}" alt="Company Image" />
+    <section class="history-section">
+        <h2>Items</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.qty | non_negative }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="2">No items available.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination for Items -->
+        <div class="pagination">
+            {% if items_pagination.has_prev %}
+                <a href="{{ url_for('home', page=items_pagination.prev_num) }}">Previous</a>
+            {% endif %}
+            <span>Page {{ items_pagination.page }} of {{ items_pagination.pages }}</span>
+            {% if items_pagination.has_next %}
+                <a href="{{ url_for('home', page=items_pagination.next_num) }}">Next</a>
+            {% endif %}
         </div>
-    </main>
-    
+    </section>
 </body>
 </html>

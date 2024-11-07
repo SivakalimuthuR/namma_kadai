@@ -3,28 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Sales</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        #qty { background-color: transparent; border: 1px solid #ccc; color: #333; padding: 5px; }
+    </style>
+    <script>
+        // Function to update the quantity placeholder based on the selected item
+        function updateQuantityPlaceholder() {
+            var itemSelect = document.getElementById("item_id");
+            var qtyInput = document.getElementById("qty");
+
+            // Get the selected item's id
+            var selectedItemId = itemSelect.value;
+
+            // Find the selected item from the items_data array
+            var selectedItem = items_data.find(function(item) {
+                return item.id == selectedItemId;
+            });
+
+            // Update the placeholder of the quantity input with the available quantity
+            if (selectedItem) {
+                qtyInput.placeholder = "Available: " + selectedItem.qty;
+                qtyInput.max = selectedItem.qty;  // Optionally limit max quantity based on available stock
+            }
+        }
+
+        // Pass the items data from Flask to JavaScript
+        const items_data = {{ items | tojson }}; // This is now a list of dictionaries (items with id, name, qty)
+
+        // Initialize the placeholder for the first item on page load
+        window.onload = function() {
+            updateQuantityPlaceholder();
+            hideFlashMessage();
+        };
+
+        // Function to hide the flash message after 5 seconds
+        function hideFlashMessage() {
+            setTimeout(function() {
+                var flashMessage = document.querySelector('.flash-message');
+                if (flashMessage) {
+                    flashMessage.style.display = 'none';
+                }
+            }, 5000);  // Hide after 5 seconds
+        }
+    </script>
 </head>
 <body>
     <header>
-        <h1>Manage Purchases</h1>
+        <h1>Manage Sales</h1>
         <nav>
             <a href="{{ url_for('home') }}">Home</a>
-            <a href="{{ url_for('manage_items') }}">Manage Items</a>
-            <a href="{{ url_for('manage_purchase') }}">Manage Purchases</a>
-            <a href="{{ url_for('manage_sales') }}">Manage Sales</a>
-            <a href="{{ url_for('show_balance') }}">Balance</a>
+            <a href="{{ url_for('manage_items') }}">Items</a>
+            <a href="{{ url_for('manage_purchase') }}">Purchases</a>
             <a href="{{ url_for('report') }}">Report</a>
         </nav>
     </header>
 
-    <!-- Sales Form Section -->
-    <section class="form-section">
+    <!-- Flash message block, moved to the top of the page -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-message {% for category, message in messages %}flash-{{ category }}{% endfor %}">
+                {% for category, message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <section>
         <form method="POST">
             <label for="item_id">Select Item:</label>
-            <select name="item_id" id="item_id" required>
+            <select name="item_id" id="item_id" required onchange="updateQuantityPlaceholder()">
                 {% for item in items %}
-                <option value="{{ item.id }}">{{ item.name }}</option>
+                    <option value="{{ item.id }}" {% if loop.index == 1 %} selected {% endif %}>
+                        {{ item.name }}
+                    </option>
                 {% endfor %}
             </select>
 
@@ -32,44 +85,11 @@
             <input type="number" name="qty" id="qty" placeholder="Quantity" required>
 
             <label for="rate">Rate:</label>
-            <input type="number" name="rate" id="rate" placeholder="Rate" required step="0.01" min="0">
+            <input type="number" name="rate" required step="0.01" min="0">
 
-            <a class="button" href="{{ url_for('manage_items') }}">Add Sale</a>
+            <button type="submit" class="button">Add Sale</button>
         </form>
     </section>
 
-    <section class="history-section">
-        <h2>Sales History</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Item Name</th>
-                    
-                    <th>Quantity</th>
-                    <th>Rate (₹)</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for sale in sales %}
-                <tr>
-                    <td>{{ sale.item_name }}</td>
-                    
-                    <td>{{ sale.qty }}</td>
-                    <td>{{ sale.rate | round(2) }}</td>
-                    <td>{{ sale.date }}</td>
-                    <td>{{ sale.time }}</td>
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="6">No sales recorded yet.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
-    
-    
 </body>
 </html>

@@ -1,287 +1,298 @@
 /* Base Styles */
 body {
-    font-family: 'Poppins', sans-serif; 
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #e0f7fa, #80deea); 
-    line-height: 1.6;
-    color: #333;
+    background-color: #f7f7f7; /* Light grey background */
+    line-height: 1.6; /* Slightly increased line-height for readability */
+    color: #444; /* Darker text color for better contrast */
 }
 
 header {
-    background: linear-gradient(90deg, #00796b, #004d40);
-    color: #fff;
-    padding: 40px 20px; 
-    text-align: center;
-    border-radius: 0 0 20px 20px; 
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+    background-color: #ffffff; /* White background for header */
+    color: #333; /* Dark text for better readability */
+    padding: 18px 30px; /* Slightly larger padding for a more formal look */
+    display: flex; /* Flexbox layout */
+    justify-content: space-between; /* Space between title and "Namma_Kadai" */
+    align-items: center; /* Vertically center the content */
+    border-bottom: 2px solid #ddd; /* Light grey border at the bottom */
 }
 
 h1 {
     margin: 0;
-    font-size: 3em; 
-    letter-spacing: 2px; 
+    font-size: 2.3em; /* Adjusted size for a more formal header */
+    font-weight: 600;
+    color: #333; /* Darker text color */
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+nav a {
+    display: inline-block;
+    margin: 0 15px; /* Slightly larger space between nav links */
+    padding: 10px 18px; /* Larger padding for more clickable area */
+    color: #333;
+    font-size: 1.1em; /* Slightly larger font for better legibility */
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    background-color: #00796b; /* Soft teal background for hover */
+    color: #fff; /* White text on hover */
+}
+
+nav a:active {
+    background-color: #004d40; /* Darker teal on active state */
+}
+
+/* "Namma_Kadai" Styling */
+.namma-kadai {
+    font-size: 1.4em; /* Larger font for prominence */
+    font-weight: 700; /* Bold for emphasis */
+    color: #00796b; /* Teal color for contrast */
+    text-align: right;
 }
 
 /* Balance Section */
 .balance {
-    background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background: #ffffff; /* White background for balance box */
+    padding: 18px 24px; /* Increased padding for a more polished look */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow for depth */
     max-width: 450px;
-    margin: 30px auto;
+    margin: 20px auto;
     text-align: center;
+    color: #333;
+    border-left: 4px solid #00796b; /* Teal left border to highlight the section */
 }
 
 .balance p {
-    font-size: 1.8em; 
-    color: #00796b;
-    font-weight: bold;
+    margin: 0;
+    font-size: 1.2em; /* Larger font size for balance text */
+    font-weight: 600;
 }
 
-/* Links Section */
-.links {
-    text-align: center;
+.balance span {
+    font-size: 1.6em; /* Larger font size for the value */
+    color: #28a745; /* Green color for positive balance */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    margin: 20px 0; /* Increased margin for spacing */
+    border-collapse: collapse;
+    background-color: #ffffff; /* White background for tables */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+}
+
+th, td {
+    padding: 12px 20px; /* Larger padding for better readability */
+    text-align: left;
+    font-size: 1.1em; /* Slightly larger font size */
+    color: #333; /* Darker text color for better contrast */
+    border-bottom: 1px solid #ddd; /* Subtle grey border */
+}
+
+th {
+    background-color: #004d40; /* Darker teal background for table header */
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+tr:nth-child(even) {
+    background-color: #f5f5f5; /* Light gray background for even rows */
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff; /* White background for odd rows */
+}
+
+tr:hover {
+    background-color: #00796b; /* Dark teal hover effect for rows */
+    color: white; /* White text on hover */
+}
+
+/* New Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 20px;
 }
 
-.links a {
-    display: inline-block; 
-    margin: 15px; 
-    color: #fff; 
-    text-decoration: none;
-    font-weight: bold;
-    padding: 12px 25px; 
-    border-radius: 5px; 
-    border: 2px solid #00796b; 
-    transition: background-color 0.3s, color 0.3s; 
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
 }
 
-.links a:hover {
-    background-color: #00796b; 
-    color: white; 
+th {
+    background-color: #004d40; /* Darker teal for header */
 }
 
-.links h1 {
-    color: #fff; 
+tr:nth-child(even) {
+    background-color: #f5f5f5; /* Light grey for even rows */
 }
 
-/* Navigation Menu */
-nav {
-    margin: 20px 0;
-    text-align: center;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
+tr:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
 }
 
-nav a {
-    color: #fff;
-    margin: 0 25px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1em;
-    position: relative;
-    padding: 10px 0;
-    transition: color 0.3s ease;
+tr:hover {
+    background-color: #00796b; /* Teal on hover */
+    color: white; /* White text on hover */
 }
 
-nav a:hover {
-    color: #0dcb89; 
-}
-
-nav a:after {
-    content: '';
-    display: block;
-    height: 2px;
-    background: #40ffd6;
-    transition: width 0.3s ease;
-    width: 0;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-}
-
-nav a:hover:after {
-    width: 100%;
-}
-
-.balance {
-    font-size: small;
-    margin-left: auto; 
-    color: #fff; 
-    padding: 10px 0; 
-}
-
-/* Button Styles */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    height: 10vh;
-}
-
-.button {
-    display: inline-block;
-    background-color: #4CAF50; 
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px; 
-    font-size: 1em; 
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3); 
-}
-
-.button:hover {
-    background-color: #388E3C;
-    transform: translateY(-3px);
-}
-
-.button:active {
-    transform: translateY(1px);
-}
 
 /* Form Styles */
 form {
-    background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background: #ffffff; /* White background for form */
+    padding: 20px 30px; /* Increased padding for form fields */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+    max-width: 600px;
     margin: 30px auto;
-    max-width: 450px;
 }
 
 label {
     font-size: 1.1em;
-    margin-bottom: 10px;
-    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
 }
 
 input[type="text"],
 input[type="number"],
 select {
     width: 100%;
-    padding: 10px;
+    padding: 10px 18px;
     margin: 10px 0;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 1em;
-    transition: border 0.3s ease;
     background-color: #f7f7f7;
+    transition: border 0.3s ease;
 }
 
 input:focus,
 select:focus {
-    border: 1px solid #00796b; 
+    border-color: #00796b;
     outline: none;
-    background-color: #e0f2f1; 
+    background-color: #e0f2f1; /* Soft teal background on focus */
 }
 
-/* Table Styles */
-table {
-    width: 100%;
-    margin: 30px 0;
-    border-collapse: collapse; 
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-th, td {
-    padding: 15px;
-    text-align: left;
-    font-size: 1.1em;
-    color: #333;
-    border-right: 1px solid #ddd;
-}
-
-th:last-child, td:last-child {
-    border-right: none; 
-}
-
-th {
-    background-color: #00796b;
+/* Button Styles */
+.button {
+    display: inline-block;
+    background-color: #00796b; /* Teal background for buttons */
     color: white;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-tr:hover {
-    background-color: #e0f2f1;
-    transition: all 0.3s ease;
-}
-
-
-h2 {
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 1.1em;
     text-align: center;
-    margin-top: 20px;
-}
-
-
-ul {
-    padding: 0;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-}
-
-li {
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-li:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-}
-
-a {
-    color: #00796b;
-    font-weight: bold;
     text-decoration: none;
-    font-size: 1em;
-    transition: color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for buttons */
 }
 
-a:hover {
-    color: #ff4081;
-    text-decoration: underline;
+.button:hover {
+    background-color: #004d40; /* Darker teal on hover */
+    transform: translateY(-2px); /* Slight lift effect */
 }
 
-/* Full-screen image section */
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+.button:active {
+    transform: translateY(1px); /* Pressed effect */
 }
 
-.image-container {
-    width: 100%;
-    height: 100%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Flash Messages */
+.flash-messages {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 300px;
+    padding: 12px;
+    border-radius: 8px;
 }
 
-.image-container img {
-    width: 100%;
-    height: 90%;
-    object-fit: cover; 
-    object-position: center;
+.flash-message {
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-size: 16px;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 
-/* Mobile Responsiveness for the image */
+.flash-message.success {
+    background-color: #28a745;
+    color: white;
+}
+
+.flash-message.danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Pagination Styling */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    padding: 5px 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #000;
+}
+
+.pagination a:hover {
+    background-color: #f2f2f2;
+}
+
+.pagination span {
+    margin: 5px;
+}
+
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .image-container img {
-        object-fit: contain; 
+    header h1 {
+        font-size: 2em; /* Slightly smaller header size on mobile */
+    }
+
+    nav a {
+        font-size: 1em;
+        padding: 8px 14px; /* Adjust padding on smaller screens */
+    }
+
+    .balance {
+        max-width: 90%; /* Take up more width on small screens */
+    }
+
+    table {
+        font-size: 0.9em; /* Smaller font size for tables */
+    }
+
+    th, td {
+        padding: 10px 15px; /* Reduced padding on smaller screens */
+    }
+
+    .button {
+        padding: 10px 20px; /* Adjust padding for smaller buttons */
     }
 }
